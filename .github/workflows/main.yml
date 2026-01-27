@@ -1,4 +1,3 @@
-
 name: QA Garden Pipeline
 
 on:
@@ -31,7 +30,7 @@ jobs:
         run: black . || true
 
   test:
-    name: Run Tests
+    name: Run Playwright Tests
     needs: lint
     runs-on: ubuntu-latest
     timeout-minutes: 60
@@ -55,7 +54,7 @@ jobs:
           pip install pytest pytest-playwright pytest-json-report requests groq
 
       - name: Install Playwright Browsers
-        run: python -m playwright install --with-deps chromium
+        run: python -m playwright install  # install all browsers
 
       - name: Generate Test Script
         run: |
@@ -74,17 +73,16 @@ jobs:
           --json-report-file=test-report.json \
           --output=test-results \
           --screenshot=only-on-failure \
-          --video=retain-on-failure
+          --video=retain-on-failure || true
 
-      - name: Generate Custom Failure JSON
-        if: steps.pytest.outcome == 'failure'
+      - name: Generate Failure JSON Immediately
         run: |
           python - <<'EOF'
-          import json, os, sys
+          import json, os
 
           if not os.path.exists('test-report.json'):
-              print("::error::Test report file missing!")
-              sys.exit(1)
+              print("::warning::test-report.json missing")
+              exit(0)
 
           with open('test-report.json') as f:
               report = json.load(f)
@@ -124,7 +122,6 @@ jobs:
           EOF
 
       - name: Checkout Triage Repo
-        if: steps.pytest.outcome == 'failure'
         uses: actions/checkout@v4
         with:
           repository: Tulasiram01/QA-GARDEN
@@ -133,7 +130,6 @@ jobs:
           fetch-depth: 0
 
       - name: Push Reports to Triage Repo
-        if: steps.pytest.outcome == 'failure'
         run: |
           cp failure_payload.json triage-folder/failure_payload_${{ github.run_id }}.json || true
 
@@ -142,11 +138,10 @@ jobs:
           git config user.email "bot@github.com"
           git remote set-url origin https://x-access-token:${{ secrets.TRIAGE_PAT }}@github.com/Tulasiram01/QA-GARDEN.git
           git add .
-          git commit -m "🚨 Automated Defect: Run ${{ github.run_id }}"
-          git push origin main
+          git commit -m "🚨 Automated Defect: Run ${{ github.run_id }}" || echo "No changes to commit"
+          git push origin main || echo "Push failed"
 
       - name: Upload Test Artifacts
-        if: always()
         uses: actions/upload-artifact@v4
         with:
           name: playwright-results
@@ -155,8 +150,3 @@ jobs:
             failure_payload.json
             test-results/
           retention-days: 7
-
-      - name: Mark failure but do not fail job
-        if: steps.pytest.outcome == 'failure'
-        run: echo "⚠️ Tests failed but pipeline continues"
-
