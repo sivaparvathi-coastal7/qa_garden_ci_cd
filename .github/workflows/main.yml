@@ -41,7 +41,7 @@ jobs:
     steps:
       - uses: actions/checkout@v4
         with:
-          repository: sivaparvathi-coastal7/login_signup_welcome
+          repository: sivaparvathi-coastal7/qa_garden_ci_cd
 
       - name: Set up Python
         uses: actions/setup-python@v4
@@ -93,7 +93,7 @@ jobs:
           custom_failures = []
 
           github_server = os.environ.get('GITHUB_SERVER_URL', 'https://github.com')
-          repo = "sivaparvathi-coastal7/login_signup_welcome"
+          repo = "sivaparvathi-coastal7/qa_garden_ci_cd"
           run_id = os.environ.get('GITHUB_RUN_ID', '0')
 
           for test in failed_tests:
@@ -127,7 +127,7 @@ jobs:
         if: steps.pytest.outcome == 'failure'
         uses: actions/checkout@v4
         with:
-          repository: Tulasiram01/QA-GARDEN
+          repository: $ {{ github.repository_owner}}/Tulasiram01/QA-GARDEN
           token: ${{ secrets.TRIAGE_PAT }}
           path: triage-folder
           fetch-depth: 0
