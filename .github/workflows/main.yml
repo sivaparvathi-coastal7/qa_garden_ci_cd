@@ -1,0 +1,161 @@
+
+name: QA Garden Pipeline
+
+on:
+  push:
+    branches: [ main, master ]
+  pull_request:
+    branches: [ main, master ]
+
+jobs:
+  lint:
+    name: Lint Code
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.11'
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install flake8 black
+
+      - name: Run flake8
+        run: flake8 . --count --select=E9,F63,F7,F82 --show-source --statistics
+
+      - name: Auto-format with Black
+        run: black . || true
+
+  test:
+    name: Run Tests
+    needs: lint
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+    env:
+      GROQ_API_KEY: ${{ secrets.GROQ_API_KEY }}
+
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          repository: sivaparvathi-coastal7/login_signup_welcome
+
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.11'
+
+      - name: Install Dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+          pip install pytest pytest-playwright pytest-json-report requests groq
+
+      - name: Install Playwright Browsers
+        run: python -m playwright install --with-deps chromium
+
+      - name: Generate Test Script
+        run: |
+          if [ -f "generate_script.py" ]; then
+            python3 generate_script.py || echo "⚠️ Test generation skipped"
+          else
+            echo "Skipping generation (script not found)"
+          fi
+
+      - name: Run Tests
+        id: pytest
+        continue-on-error: true
+        run: |
+          pytest --verbose \
+          --json-report \
+          --json-report-file=test-report.json \
+          --output=test-results \
+          --screenshot=only-on-failure \
+          --video=retain-on-failure
+
+      - name: Generate Custom Failure JSON
+        if: steps.pytest.outcome == 'failure'
+        run: |
+          python - <<'EOF'
+          import json, os, sys
+
+          if not os.path.exists('test-report.json'):
+              print("::error::Test report file missing!")
+              sys.exit(1)
+
+          with open('test-report.json') as f:
+              report = json.load(f)
+
+          failed_tests = [t for t in report.get('tests', []) if t.get('outcome') == 'failed']
+          custom_failures = []
+
+          github_server = os.environ.get('GITHUB_SERVER_URL', 'https://github.com')
+          repo = "sivaparvathi-coastal7/login_signup_welcome"
+          run_id = os.environ.get('GITHUB_RUN_ID', '0')
+
+          for test in failed_tests:
+              node_id = test.get('nodeid', 'unknown')
+              file_path = node_id.split("::")[0]
+              long_repr = test.get('call', {}).get('longrepr', '')
+
+              error_message = str(long_repr).split('\n')[0]
+              stack_trace = str(long_repr)
+
+              custom_failures.append({
+                  "test_name": node_id,
+                  "file_path": file_path,
+                  "error_message": error_message,
+                  "stack_trace": stack_trace,
+                  "logs": test.get('stdout', '') + test.get('stderr', ''),
+                  "llm_model": "gemma:2b",
+                  "bert_url": "http://127.0.0.1:8001",
+                  "labels": [],
+                  "test_url": f"{github_server}/{repo}/actions/runs/{run_id}",
+                  "playwright_script_url": f"{github_server}/{repo}/blob/main/{file_path}"
+              })
+
+          with open('failure_payload.json', 'w') as f:
+              json.dump(custom_failures, f, indent=2)
+
+          print(f"Generated failure_payload.json with {len(custom_failures)} errors.")
+          EOF
+
+      - name: Checkout Triage Repo
+        if: steps.pytest.outcome == 'failure'
+        uses: actions/checkout@v4
+        with:
+          repository: Aswinikamireddy
+          token: ${{ secrets.TRIAGE_PAT }}
+          path: triage-folder
+          fetch-depth: 0
+
+      - name: Push Reports to Triage Repo
+        if: steps.pytest.outcome == 'failure'
+        run: |
+          cp failure_payload.json triage-folder/failure_payload_${{ github.run_id }}.json || true
+
+          cd triage-folder
+          git config user.name "QA Garden Bot"
+          git config user.email "bot@github.com"
+          git remote set-url origin https://x-access-token:${{ secrets.TRIAGE_PAT }}@github.com/Tulasiram01/QA-GARDEN.git
+          git add .
+          git commit -m "🚨 Automated Defect: Run ${{ github.run_id }}"
+          git push origin master
+
+      - name: Upload Test Artifacts
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: playwright-results
+          path: |
+            test-report.json
+            failure_payload.json
+            test-results/
+          retention-days: 7
+
+      - name: Fail job if tests failed
+        if: steps.pytest.outcome == 'failure'
+        run: exit 1
