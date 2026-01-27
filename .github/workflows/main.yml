@@ -143,7 +143,7 @@ jobs:
           git remote set-url origin https://x-access-token:${{ secrets.TRIAGE_PAT }}@github.com/Tulasiram01/QA-GARDEN.git
           git add .
           git commit -m "🚨 Automated Defect: Run ${{ github.run_id }}"
-          git push origin master
+          git push origin main
 
       - name: Upload Test Artifacts
         if: always()
