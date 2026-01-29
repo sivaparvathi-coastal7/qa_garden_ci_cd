@@ -126,7 +126,13 @@ def generate_test_from_inputs(test_case: dict, page: str) -> str:
     expected = test_case.get('expected', [])
     
     # Convert test ID to function name
-    func_name = test_id.lower().replace('_tc_', '_').replace('tc_', '')
+    func_name = (
+    test_id.lower()
+    .replace('-', '_')
+    .replace('_tc_', '_')
+    .replace('tc_', '')
+    )
+
     
     # Determine fixture type
     fixture = 'authenticated_page' if page == 'welcome' else 'page'
