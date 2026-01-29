@@ -160,7 +160,7 @@ def generate_test_from_inputs(test_case: dict, page: str) -> str:
                 test_code += f"    {fixture}.locator({locator_class}.{locator_ref}).fill('{inputs[field_name]}')\n"
         elif key.endswith(('_button', '_link', '_toggle')):
             locator_ref = value.replace(f'{locator_class}.', '')
-            test_code += f"    {fixture}.locator({locator_class}.{locator_ref}).click()\n"
+            test_code += f"    {fixture}.locator('{value}').click()\n"
             test_code += f"    {fixture}.wait_for_load_state('networkidle')\n"
     
     # Handle confirm_password separately for signup
