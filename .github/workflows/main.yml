@@ -152,20 +152,20 @@ jobs:
           with open("test-report.json") as f:
               report = json.load(f)
           has_runtime_failures = any(
-               t.get("outcome") in ("failed", "error")
-               for t in report.get("tests", [])
+              t.get("outcome") in ("failed", "error")
+              for t in report.get("tests", [])
            )
 
           has_collection_errors = any(
-               c.get("outcome") == "failed"
-               for c in report.get("collectors", [])
+              c.get("outcome") == "failed"
+              for c in report.get("collectors", [])
            )
 
           if has_runtime_failures or has_collection_errors:
-               print("❌ Test failures or collection errors detected")
-               sys.exit(1)
+              print("❌ Test failures or collection errors detected")
+              sys.exit(1)
           else:
-               print("✅ All tests passed")
+              print("✅ All tests passed")
           EOF
            
       - name: Checkout Triage Repo
