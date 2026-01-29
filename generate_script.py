@@ -126,12 +126,15 @@ def generate_test_from_inputs(test_case: dict, page: str) -> str:
     expected = test_case.get('expected', [])
     
     # Convert test ID to function name
-    func_name = (
-    test_id.lower()
-    .replace('-', '_')
-    .replace('_tc_', '_')
-    .replace('tc_', '')
-    )
+    import re
+
+    raw_name = test_id.lower()
+    raw_name = re.sub(r'[^a-z0-9_]', '_', raw_name)  # remove -, spaces, etc.
+
+    if raw_name.startswith("tc_"):
+        raw_name = raw_name[3:]
+
+    func_name = raw_name
 
     
     # Determine fixture type
@@ -159,10 +162,12 @@ def generate_test_from_inputs(test_case: dict, page: str) -> str:
                 locator_ref = value.replace(f'{locator_class}.', '')
                 test_code += f"    {fixture}.locator({locator_class}.{locator_ref}).fill('{inputs[field_name]}')\n"
         elif key.endswith(('_button', '_link', '_toggle')):
-            locator_ref = value.replace(f'{locator_class}.', '')
-            test_code += f"    {fixture}.locator('{value}').click()\n"
+            if value.startswith(locator_class):
+                test_code += f"    {fixture}.locator({value}).click()\n"
+            else:
+                test_code += f'    {fixture}.locator("{value}").click()\n'
             test_code += f"    {fixture}.wait_for_load_state('networkidle')\n"
-    
+        
     # Handle confirm_password separately for signup
     if page == 'signup' and 'confirm_password' in inputs and 'confirm_password_locator' in inputs:
         locator_ref = inputs['confirm_password_locator'].replace(f'{locator_class}.', '')
