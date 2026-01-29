@@ -110,8 +110,8 @@ jobs:
                       "labels": ["collection_error"],
                       "test_url": f"{github_server}/{repo}/actions/runs/{run_id}",
                       "playwright_script_url": f"{github_server}/{repo}/blob/main/{nodeid}"
-                  })
-           EOF
+                      })
+        
           # =========================
           # 2️⃣ RUNTIME FAILURES
           # =========================
