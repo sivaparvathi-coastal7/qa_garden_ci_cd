@@ -87,7 +87,10 @@ jobs:
           with open('test-report.json') as f:
               report = json.load(f)
 
-          failed_tests = [t for t in report.get('tests', []) if t.get('outcome') == 'failed']
+          failed_tests = [
+               t for t in report.get('tests', [])
+               if t.get('outcome') in ('failed', 'error')
+          ]
           custom_failures = []
 
           github_server = os.environ.get('GITHUB_SERVER_URL', 'https://github.com')
@@ -97,7 +100,12 @@ jobs:
           for test in failed_tests:
               node_id = test.get('nodeid', 'unknown')
               file_path = node_id.split("::")[0]
-              long_repr = test.get('call', {}).get('longrepr', '')
+              long_repr = (
+                  test.get('call', {}).get('longrepr')
+                  or test.get('setup', {}).get('longrepr')
+                  or test.get('teardown', {}).get('longrepr')
+                  or ''
+              )
 
               error_message = str(long_repr).split('\n')[0]
               stack_trace = str(long_repr)
