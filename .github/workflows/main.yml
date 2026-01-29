@@ -73,7 +73,7 @@ jobs:
           --json-report-file=test-report.json \
           --output=test-results \
           --screenshot=only-on-failure \
-          --video=retain-on-failure || true
+          --video=retain-on-failure 
 
       - name: Generate Failure JSON Immediately
         run: |
@@ -119,6 +119,21 @@ jobs:
               json.dump(custom_failures, f, indent=2)
 
           print(f"Generated failure_payload.json with {len(custom_failures)} errors.")
+          EOF
+      - name: Fail job if tests failed
+        run: |
+          python - <<'EOF'
+          import json, sys
+
+          with open("test-report.json") as f:
+              report = json.load(f)
+          failed = [t for t in report.get("tests", []) if t.get("outcome") == "failed"]
+
+          if failed:
+             print(f"❌ {len(failed)} test(s) failed")
+             sys.exit(1)
+          else:
+             print("✅ All tests passed")
           EOF
 
       - name: Checkout Triage Repo
