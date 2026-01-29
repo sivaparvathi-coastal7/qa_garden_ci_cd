@@ -110,36 +110,36 @@ jobs:
                       "labels": ["collection_error"],
                       "test_url": f"{github_server}/{repo}/actions/runs/{run_id}",
                       "playwright_script_url": f"{github_server}/{repo}/blob/main/{nodeid}"
-                      })
+                  })
         
           # =========================
           # 2️⃣ RUNTIME FAILURES
           # =========================
           for test in report.get("tests", []):
               if test.get("outcome") in ("failed", "error"):
-                 node_id = test.get("nodeid", "unknown")
-                 file_path = node_id.split("::")[0]
+                  node_id = test.get("nodeid", "unknown")
+                  file_path = node_id.split("::")[0]
 
-                 longrepr = (
-                     test.get("call", {}).get("longrepr")
-                     or test.get("setup", {}).get("longrepr")
-                     or test.get("teardown", {}).get("longrepr")
-                     or ""
+                  longrepr = (
+                      test.get("call", {}).get("longrepr")
+                      or test.get("setup", {}).get("longrepr")
+                      or test.get("teardown", {}).get("longrepr")
+                      or ""
                   )
 
-                custom_failures.append({
-                    "test_name": node_id,
-                    "file_path": file_path,
-                    "error_message": str(longrepr).split("\n")[0],
-                    "stack_trace": str(longrepr),
-                    "logs": test.get("stdout", "") + test.get("stderr", ""),
-                    "labels": [],
-                    "test_url": f"{github_server}/{repo}/actions/runs/{run_id}",
-                    "playwright_script_url": f"{github_server}/{repo}/blob/main/{file_path}"
-                })
+                  custom_failures.append({
+                      "test_name": node_id,
+                      "file_path": file_path,
+                      "error_message": str(longrepr).split("\n")[0],
+                      "stack_trace": str(longrepr),
+                      "logs": test.get("stdout", "") + test.get("stderr", ""),
+                      "labels": [],
+                      "test_url": f"{github_server}/{repo}/actions/runs/{run_id}",
+                      "playwright_script_url": f"{github_server}/{repo}/blob/main/{file_path}"
+                  })
 
           with open("failure_payload.json", "w") as f:
-             json.dump(custom_failures, f, indent=2)
+              json.dump(custom_failures, f, indent=2)
 
           print(f"Generated failure_payload.json with {len(custom_failures)} errors.")
           EOF
@@ -151,22 +151,22 @@ jobs:
 
           with open("test-report.json") as f:
               report = json.load(f)
-           has_runtime_failures = any(
+          has_runtime_failures = any(
                t.get("outcome") in ("failed", "error")
                for t in report.get("tests", [])
            )
 
-           has_collection_errors = any(
+          has_collection_errors = any(
                c.get("outcome") == "failed"
                for c in report.get("collectors", [])
            )
 
-           if has_runtime_failures or has_collection_errors:
+          if has_runtime_failures or has_collection_errors:
                print("❌ Test failures or collection errors detected")
                sys.exit(1)
-           else:
+          else:
                print("✅ All tests passed")
-           EOF
+          EOF
            
       - name: Checkout Triage Repo
         uses: actions/checkout@v4
