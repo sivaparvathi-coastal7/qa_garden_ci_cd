@@ -53,7 +53,7 @@ jobs:
           python -m pip install --upgrade pip
           pip install -r requirements.txt
           pip install pytest pytest-playwright pytest-json-report requests groq
- 
+           
       - name: Install Playwright Browsers
         run: python -m playwright install  # install all browsers
  
@@ -81,91 +81,73 @@ jobs:
           --output=test-results \
           --screenshot=only-on-failure \
           --video=retain-on-failure
- 
+
+      - name: Debug Test Results
+        run: |
+          echo "=== TEST DEBUG ==="
+          if [ -f "test-report.json" ]; then
+          python -c "
+          import json
+          r = json.load(open('test-report.json'))
+          print(f'Tests run: {len(r.get(\"tests\", []))}')
+          print(f'Failed: {len([t for t in r.get(\"tests\", []) if t.get(\"outcome\") == \"failed\"])}')
+          print(f'Passed: {len([t for t in r.get(\"tests\", []) if t.get(\"outcome\") == \"passed\"])}')
+          "
+          else
+          echo "No test-report.json found"
+          fi
+
       - name: Generate Failure JSON Immediately
         run: |
           python - <<'EOF'
-          import json, os
-          output_file = "failure_payload.json"
-
-          # =========================
-          # CASE 0️⃣: pytest report missing
-          # =========================
+          import json, os, sys  # ✅ Fixed import
+    
+          # Force create failures if no test-report.json
           if not os.path.exists("test-report.json"):
-              failure = [{
-                  "test_name": "pytest_execution",
-                  "file_path": "",
-                  "error_message": "test-report.json not generated",
-                  "stack_trace": "",
-                  "logs": "",
-                  "labels": ["pytest_error"],
-                  "test_url": "",
-                  "playwright_script_url": ""
+              failures = [{
+                 "test_name": "CI_ERROR",
+                 "error_message": "No test report generated",
+                 "file_path": "pytest",
+                 "stack_trace": "Tests may not have executed properly",
+                 "logs": "",
+                 "labels": ["ci_error"]
               }]
-              with open(output_file, "w") as f:
-                  json.dump(failure, f, indent=2)
-              sys.exit(0)
-
- 
+          with open("failure_payload.json", "w") as f:
+              json.dump(failures, f, indent=2)
+          sys.exit(0)
+    
+          # Process actual test results
           with open("test-report.json") as f:
-              report = json.load(f)
- 
-          custom_failures = []
- 
-          github_server = os.environ.get("GITHUB_SERVER_URL", "https://github.com")
-          repo = "sivaparvathi-coastal7/qa_garden_ci_cd"
-          run_id = os.environ.get("GITHUB_RUN_ID", "0")
- 
-          # =========================
-          # 1️⃣ COLLECTION ERRORS
-          # =========================
-          for collector in report.get("collectors", []):
-              if collector.get("outcome") == "failed":
-                  nodeid = collector.get("nodeid", "collection_error")
-                  longrepr = collector.get("longrepr", "")
- 
-                  custom_failures.append({
-                      "test_name": nodeid,
-                      "file_path": nodeid,
-                      "error_message": str(longrepr).split("\n")[0],
-                      "stack_trace": str(longrepr),
-                      "logs": "",
-                      "labels": ["collection_error"],
-                      "test_url": f"{github_server}/{repo}/actions/runs/{run_id}",
-                      "playwright_script_url": f"{github_server}/{repo}/blob/main/{nodeid}"
-                  })
-       
-          # =========================
-          # 2️⃣ RUNTIME FAILURES
-          # =========================
+               report = json.load(f)
+    
+          failures = []
           for test in report.get("tests", []):
               if test.get("outcome") in ("failed", "error"):
-                  node_id = test.get("nodeid", "unknown")
-                  file_path = node_id.split("::")[0]
- 
-                  longrepr = (
-                      test.get("call", {}).get("longrepr")
-                      or test.get("setup", {}).get("longrepr")
-                      or test.get("teardown", {}).get("longrepr")
-                      or ""
-                  )
- 
-                  custom_failures.append({
-                      "test_name": node_id,
-                      "file_path": file_path,
-                      "error_message": str(longrepr).split("\n")[0],
-                      "stack_trace": str(longrepr),
+                  failures.append({
+                      "test_name": test.get("nodeid", "unknown"),
+                      "error_message": str(test.get("call", {}).get("longrepr", "")).split("\n")[0],
+                      "file_path": test.get("nodeid", "").split("::")[0],
+                      "stack_trace": str(test.get("call", {}).get("longrepr", "")),
                       "logs": test.get("stdout", "") + test.get("stderr", ""),
-                      "labels": [],
-                      "test_url": f"{github_server}/{repo}/actions/runs/{run_id}",
-                      "playwright_script_url": f"{github_server}/{repo}/blob/main/{file_path}"
+                      "labels": ["test_failure"]
                   })
- 
-          with open("failure_payload.json", "w") as f:
-              json.dump(custom_failures, f, indent=2)
- 
-          print(f"Generated failure_payload.json with {len(custom_failures)} errors.")
-          EOF
+    
+          # ✅ FORCE CREATE SAMPLE FAILURE IF ALL PASS (for debugging)
+          if len(failures) == 0:
+          failures = [{
+             "test_name": "DEBUG_ALL_TESTS_PASSED",
+             "error_message": f"All {len(report.get('tests', []))} tests passed in CI",
+             "file_path": "debug",
+             "stack_trace": f"Summary: {report.get('summary', {})}",
+             "logs": "This indicates environment differences between local and CI",
+             "labels": ["debug", "all_passed"]
+           }]
+    
+           with open("failure_payload.json", "w") as f:
+               json.dump(failures, f, indent=2)
+    
+           print(f"Generated {len(failures)} failure entries")
+           EOF
  
       - name: Fail job if tests failed
         continue-on-error: true
