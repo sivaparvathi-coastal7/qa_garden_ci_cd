@@ -100,8 +100,8 @@ jobs:
       - name: Generate Failure JSON Immediately
         run: |
           python - <<'EOF'
-          import json, os, sys  # ✅ Fixed import
-    
+          import json, os, sys 
+          # ✅ Fixed import
           # Force create failures if no test-report.json
           if not os.path.exists("test-report.json"):
               failures = [{
