@@ -36,7 +36,6 @@ jobs:
     timeout-minutes: 60
     env:
       GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
-
  
     steps:
       - uses: actions/checkout@v4
@@ -55,7 +54,7 @@ jobs:
           pip install pytest pytest-playwright pytest-json-report requests groq
            
       - name: Install Playwright Browsers
-        run: python -m playwright install  # install all browsers
+        run: python -m playwright install
  
       - name: Generate Test Script
         run: |
@@ -86,22 +85,22 @@ jobs:
         run: |
           echo "=== TEST DEBUG ==="
           if [ -f "test-report.json" ]; then
-          python -c "
+            python -c "
           import json
           r = json.load(open('test-report.json'))
           print(f'Tests run: {len(r.get(\"tests\", []))}')
           print(f'Failed: {len([t for t in r.get(\"tests\", []) if t.get(\"outcome\") == \"failed\"])}')
           print(f'Passed: {len([t for t in r.get(\"tests\", []) if t.get(\"outcome\") == \"passed\"])}')
-          "
+          " 
           else
-          echo "No test-report.json found"
+            echo "No test-report.json found"
           fi
 
       - name: Generate Failure JSON Immediately
         run: |
           python - <<'EOF'
-          import json, os, sys 
-          # ✅ Fixed import
+          import json, os, sys
+          
           # Force create failures if no test-report.json
           if not os.path.exists("test-report.json"):
               failures = [{
@@ -115,11 +114,11 @@ jobs:
               with open("failure_payload.json", "w") as f:
                   json.dump(failures, f, indent=2)
               sys.exit(0)
-    
+          
           # Process actual test results
           with open("test-report.json") as f:
-               report = json.load(f)
-    
+              report = json.load(f)
+          
           failures = []
           for test in report.get("tests", []):
               if test.get("outcome") in ("failed", "error"):
@@ -131,23 +130,23 @@ jobs:
                       "logs": test.get("stdout", "") + test.get("stderr", ""),
                       "labels": ["test_failure"]
                   })
-    
-          # ✅ FORCE CREATE SAMPLE FAILURE IF ALL PASS (for debugging)
+          
+          # Force create sample failure if all pass (for debugging)
           if len(failures) == 0:
-          failures = [{
-             "test_name": "DEBUG_ALL_TESTS_PASSED",
-             "error_message": f"All {len(report.get('tests', []))} tests passed in CI",
-             "file_path": "debug",
-             "stack_trace": f"Summary: {report.get('summary', {})}",
-             "logs": "This indicates environment differences between local and CI",
-             "labels": ["debug", "all_passed"]
-           }]
-    
-           with open("failure_payload.json", "w") as f:
-               json.dump(failures, f, indent=2)
-    
-           print(f"Generated {len(failures)} failure entries")
-           EOF
+              failures = [{
+                  "test_name": "DEBUG_ALL_TESTS_PASSED",
+                  "error_message": f"All {len(report.get('tests', []))} tests passed in CI",
+                  "file_path": "debug",
+                  "stack_trace": f"Summary: {report.get('summary', {})}",
+                  "logs": "This indicates environment differences between local and CI",
+                  "labels": ["debug", "all_passed"]
+              }]
+          
+          with open("failure_payload.json", "w") as f:
+              json.dump(failures, f, indent=2)
+          
+          print(f"Generated {len(failures)} failure entries")
+          EOF
  
       - name: Fail job if tests failed
         continue-on-error: true
@@ -203,5 +202,3 @@ jobs:
             failure_payload.json
             test-results/
           retention-days: 7
- 
- 
