@@ -16,7 +16,7 @@ jobs:
       - name: Set up Python
         uses: actions/setup-python@v4
         with:
-          python-version: '3.11'
+          python-version: '3.10'
  
       - name: Install dependencies
         run: |
@@ -86,10 +86,26 @@ jobs:
         run: |
           python - <<'EOF'
           import json, os
- 
+          output_file = "failure_payload.json"
+
+          # =========================
+          # CASE 0️⃣: pytest report missing
+          # =========================
           if not os.path.exists("test-report.json"):
-              print("::warning::test-report.json missing")
-              exit(0)
+              failure = [{
+                  "test_name": "pytest_execution",
+                  "file_path": "",
+                  "error_message": "test-report.json not generated",
+                  "stack_trace": "",
+                  "logs": "",
+                  "labels": ["pytest_error"],
+                  "test_url": "",
+                  "playwright_script_url": ""
+              }]
+              with open(output_file, "w") as f:
+                  json.dump(failure, f, indent=2)
+              sys.exit(0)
+
  
           with open("test-report.json") as f:
               report = json.load(f)
