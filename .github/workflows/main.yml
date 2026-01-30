@@ -105,16 +105,16 @@ jobs:
           # Force create failures if no test-report.json
           if not os.path.exists("test-report.json"):
               failures = [{
-                 "test_name": "CI_ERROR",
-                 "error_message": "No test report generated",
-                 "file_path": "pytest",
-                 "stack_trace": "Tests may not have executed properly",
-                 "logs": "",
-                 "labels": ["ci_error"]
+                  "test_name": "CI_ERROR",
+                  "error_message": "No test report generated",
+                  "file_path": "pytest",
+                  "stack_trace": "Tests may not have executed properly",
+                  "logs": "",
+                  "labels": ["ci_error"]
               }]
-          with open("failure_payload.json", "w") as f:
-              json.dump(failures, f, indent=2)
-          sys.exit(0)
+              with open("failure_payload.json", "w") as f:
+                  json.dump(failures, f, indent=2)
+              sys.exit(0)
     
           # Process actual test results
           with open("test-report.json") as f:
