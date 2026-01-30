@@ -63,23 +63,28 @@ jobs:
           else
             echo "Skipping generation (script not found)"
           fi
-       
+      - name: Debug Generated Tests
+        run: |
+          echo "=== GENERATED TESTS DEBUG ==="ls -la tests/ || echo "tests/ directory not found"
+          find . -name "test_*.py" -type f || echo "No test files found"
+          echo "=== GENERATE SCRIPT OUTPUT ==="
+          if [ -f "generate_script.py" ]; then
+            python3 generate_script.py
+          fi
+
       - name: Upload Generated Tests
         uses: actions/upload-artifact@v4
         with:
           name: generated-tests
           path: tests/
- 
       - name: Run Tests
-        id: pytest
-        continue-on-error: true
         run: |
-          pytest --verbose \
+          echo "Looking for tests..."
+          find . -name "test_*.py" -type f
+          pytest tests/ --verbose --collect-only
+          pytest tests/ --verbose \
           --json-report \
-          --json-report-file=test-report.json \
-          --output=test-results \
-          --screenshot=only-on-failure \
-          --video=retain-on-failure
+          --json-report-file=test-report.json
 
       - name: Debug Test Results
         run: |
