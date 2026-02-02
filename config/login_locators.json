@@ -1,0 +1,194 @@
+[
+  {
+    "id": 3929,
+    "element_name": "welcome_back__email___password___forgot_password_l_div",
+    "element_type": "div",
+    "css_selector": "#root",
+    "xpath": "//*[@id='root']",
+    "verified": true
+  },
+  {
+    "id": 3930,
+    "element_name": "snappod_logo_img",
+    "element_type": "img",
+    "css_selector": "[alt='SnapPod Logo']",
+    "xpath": "//*[@alt='SnapPod Logo']",
+    "verified": true
+  },
+  {
+    "id": 3931,
+    "element_name": "welcome_back__h2",
+    "element_type": "h2",
+    "css_selector": "h2:has-text('Welcome Back!')",
+    "xpath": "//h2[contains(text(), 'Welcome Back!')]",
+    "verified": true
+  },
+  {
+    "id": 3932,
+    "element_name": "email___password___forgot_password_login_or_form",
+    "element_type": "form",
+    "css_selector": "form:has-text('Email *\nPassword *\nForgot Pass')",
+    "xpath": "//form[contains(text(), 'Email *\nPassword *\nForgot Pass')]",
+    "verified": true
+  },
+  {
+    "id": 3933,
+    "element_name": "email___label",
+    "element_type": "label",
+    "css_selector": "label:has-text('Email *')",
+    "xpath": "//label[contains(text(), 'Email *')]",
+    "verified": true
+  },
+  {
+    "id": 3934,
+    "element_name": "__span",
+    "element_type": "span",
+    "css_selector": "span:has-text('*')",
+    "xpath": "//span[contains(text(), '*')]",
+    "verified": true
+  },
+  {
+    "id": 3935,
+    "element_name": "enter_your_email_address_input",
+    "element_type": "input",
+    "css_selector": "#login-email",
+    "xpath": "//*[@id='login-email']",
+    "verified": true
+  },
+  {
+    "id": 3936,
+    "element_name": "password___label",
+    "element_type": "label",
+    "css_selector": "label:has-text('Password *')",
+    "xpath": "//label[contains(text(), 'Password *')]",
+    "verified": true
+  },
+  {
+    "id": 3937,
+    "element_name": "enter_your_password_input",
+    "element_type": "input",
+    "css_selector": "#login-password",
+    "xpath": "//*[@id='login-password']",
+    "verified": true
+  },
+  {
+    "id": 3938,
+    "element_name": "span",
+    "element_type": "span",
+    "css_selector": "[aria-label='Show password']",
+    "xpath": "//*[@aria-label='Show password']",
+    "verified": true
+  },
+  {
+    "id": 3939,
+    "element_name": "svg",
+    "element_type": "svg",
+    "css_selector": "svg",
+    "xpath": "//svg",
+    "verified": true
+  },
+  {
+    "id": 3940,
+    "element_name": "path",
+    "element_type": "path",
+    "css_selector": "path",
+    "xpath": "//path",
+    "verified": true
+  },
+  {
+    "id": 3941,
+    "element_name": "forgot_password_a",
+    "element_type": "a",
+    "css_selector": "a:has-text('Forgot Password')",
+    "xpath": "//a[contains(text(), 'Forgot Password')]",
+    "verified": true
+  },
+  {
+    "id": 3942,
+    "element_name": "login_button",
+    "element_type": "button",
+    "css_selector": "button:has-text('Login')",
+    "xpath": "//button[contains(text(), 'Login')]",
+    "verified": true
+  },
+  {
+    "id": 3943,
+    "element_name": "or_div",
+    "element_type": "div",
+    "css_selector": "div:has-text('or')",
+    "xpath": "//div[contains(text(), 'or')]",
+    "verified": true
+  },
+  {
+    "id": 3944,
+    "element_name": "button",
+    "element_type": "button",
+    "css_selector": "[aria-label='Sign in with Google']",
+    "xpath": "//*[@aria-label='Sign in with Google']",
+    "verified": true
+  },
+  {
+    "id": 3945,
+    "element_name": "don_t_have_an_account__div",
+    "element_type": "div",
+    "css_selector": "div:has-text('Don\\'t have an account?')",
+    "xpath": "//div[contains(text(), 'Don\\'t have an account?')]",
+    "verified": true
+  },
+  {
+    "id": 3946,
+    "element_name": "sign_up_here_a",
+    "element_type": "a",
+    "css_selector": "a:has-text('Sign Up Here')",
+    "xpath": "//a[contains(text(), 'Sign Up Here')]",
+    "verified": true
+  },
+  {
+    "id": 3947,
+    "element_name": "enter_your_email_address_input",
+    "element_type": "input",
+    "css_selector": "#login-email",
+    "xpath": "//*[@id='login-email']",
+    "verified": true
+  },
+  {
+    "id": 3948,
+    "element_name": "enter_your_password_input",
+    "element_type": "input",
+    "css_selector": "#login-password",
+    "xpath": "//*[@id='login-password']",
+    "verified": true
+  },
+  {
+    "id": 3949,
+    "element_name": "welcome_back__email___password___forgot_password_l_div",
+    "element_type": "div",
+    "css_selector": "#root",
+    "xpath": "//*[@id='root']",
+    "verified": true
+  },
+  {
+    "id": 3950,
+    "element_name": "email___password___forgot_password_logging_in_or_form",
+    "element_type": "form",
+    "css_selector": "form:has-text('Email *\nPassword *\nForgot Pass')",
+    "xpath": "//form[contains(text(), 'Email *\nPassword *\nForgot Pass')]",
+    "verified": true
+  },
+  {
+    "id": 3951,
+    "element_name": "enter_your_email_address_input",
+    "element_type": "input",
+    "css_selector": "#login-email",
+    "xpath": "//*[@id='login-email']",
+    "verified": true
+  },
+  {
+    "id": 3952,
+    "element_name": "logging_in_button",
+    "element_type": "button",
+    "css_selector": "button:has-text('Logging In')",
+    "xpath": "//button[contains(text(), 'Logging In')]",
+    "verified": true
+  }
+]

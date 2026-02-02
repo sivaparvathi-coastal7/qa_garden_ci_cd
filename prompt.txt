@@ -12,11 +12,12 @@ CRITICAL RULES (MANDATORY):
    - NEVER use: with sync_playwright() as p:
 
 2. LOCATOR USAGE (CRITICAL):
-   - Locators are CSS selector STRINGS, not Playwright elements
-   - ALWAYS wrap with page.locator(): page.locator(LoginLocators.EMAIL_INPUT)
-   - For visibility: expect(page.locator(LoginLocators.EMAIL_INPUT)).to_be_visible()
-   - For interactions: page.locator(LoginLocators.EMAIL_INPUT).fill('text')
-   - NEVER use: LoginLocators.EMAIL_INPUT.is_visible() (this will fail)
+   - Use JSON locators provided in LOCATORS JSON section
+   - Extract css_selector from JSON and use with page.locator()
+   - Example: page.locator("#login-email") for email input
+   - For visibility: expect(page.locator("#login-email")).to_be_visible()
+   - For interactions: page.locator("#login-email").fill('text')
+   - DO NOT import config.login_locators - use JSON locators directly
 
 3. JSON TESTCASES USAGE (CRITICAL):
    - JSON testcases contain specific inputs for each test
@@ -38,11 +39,21 @@ CRITICAL RULES (MANDATORY):
    - Use specific inputs from each test case
 
 5. IMPORTS:
-   - from config.urls import LOGIN_URL, SIGNUP_URL
-   - from config.login_locators import LoginLocators
+   - from config.urls import LOGIN_URL, SIGNUP_URL, WELCOME_URL
    - from playwright.sync_api import expect
+   - import re (if using regex patterns)
 
-6. OUTPUT FORMAT:
+6. PYTHON SYNTAX RULES (CRITICAL):
+   - NEVER use JavaScript regex syntax like /pattern/
+   - ALWAYS use Python regex: re.compile(r"pattern") or re.search(r"pattern", string)
+   - For URL pattern matching: re.compile(r"accounts\.google\.com")
+   - ALWAYS import 're' module when using regex patterns
+   - NO JavaScript syntax allowed - this is Python only
+   - Use proper Python string escaping with raw strings r"pattern"
+   - Example CORRECT: expect(page).to_have_url(re.compile(r"accounts\.google\.com"))
+   - Example WRONG: expect(page).to_have_url(/accounts\.google\.com/)
+
+7. OUTPUT FORMAT:
    - Output ONLY valid Python code
    - No explanations, markdown, or ``` fences
    - Start with imports
@@ -59,6 +70,8 @@ FORBIDDEN PATTERNS:
 - Hardcoded values when test case inputs are provided
 - Using page fixture for welcome tests (MUST use authenticated_page)
 - Welcome tests without authenticated_page.goto(WELCOME_URL, timeout=60000)
+- JavaScript regex syntax like /pattern/
+- Importing config.login_locators or similar Python classes
 
 STATIC WEBSITE HANDLING:
 - This is a static website hosted on S3/CloudFront

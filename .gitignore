@@ -45,7 +45,7 @@ artifacts/traces/
 artifacts/reports/
 test-results/
 playwright-report/
-
+tests
 # Logs
 *.log
 logs/

@@ -1,0 +1,202 @@
+[
+  {
+    "id": 3953,
+    "element_name": "start_creating___already_have_an_account___sign_in_div",
+    "element_type": "div",
+    "css_selector": "#root",
+    "xpath": "//*[@id='root']",
+    "verified": true
+  },
+  {
+    "id": 3954,
+    "element_name": "logo_img",
+    "element_type": "img",
+    "css_selector": "[alt='Logo']",
+    "xpath": "//*[@alt='Logo']",
+    "verified": true
+  },
+  {
+    "id": 3955,
+    "element_name": "start_creating__h1",
+    "element_type": "h1",
+    "css_selector": "h1:has-text('Start creating!')",
+    "xpath": "//h1[contains(text(), 'Start creating!')]",
+    "verified": true
+  },
+  {
+    "id": 3956,
+    "element_name": "already_have_an_account__p",
+    "element_type": "p",
+    "css_selector": "p:has-text('Already have an account?')",
+    "xpath": "//p[contains(text(), 'Already have an account?')]",
+    "verified": true
+  },
+  {
+    "id": 3957,
+    "element_name": "sign_in_here_a",
+    "element_type": "a",
+    "css_selector": "a:has-text('Sign In Here')",
+    "xpath": "//a[contains(text(), 'Sign In Here')]",
+    "verified": true
+  },
+  {
+    "id": 3958,
+    "element_name": "sign_up_with_google_button",
+    "element_type": "button",
+    "css_selector": "[aria-label='Sign up with Google']",
+    "xpath": "//*[@aria-label='Sign up with Google']",
+    "verified": true
+  },
+  {
+    "id": 3959,
+    "element_name": "sign_up_with_google_span",
+    "element_type": "span",
+    "css_selector": "span:has-text('Sign up with Google')",
+    "xpath": "//span[contains(text(), 'Sign up with Google')]",
+    "verified": true
+  },
+  {
+    "id": 3960,
+    "element_name": "sign_up_with_facebook_button",
+    "element_type": "button",
+    "css_selector": "[aria-label='Sign up with Facebook']",
+    "xpath": "//*[@aria-label='Sign up with Facebook']",
+    "verified": true
+  },
+  {
+    "id": 3961,
+    "element_name": "sign_up_with_facebook_span",
+    "element_type": "span",
+    "css_selector": "span:has-text('Sign up with Facebook')",
+    "xpath": "//span[contains(text(), 'Sign up with Facebook')]",
+    "verified": true
+  },
+  {
+    "id": 3962,
+    "element_name": "first_name___last_name___phone_number_email___pass_form",
+    "element_type": "form",
+    "css_selector": "form:has-text('First Name *\nLast Name *\nPhone')",
+    "xpath": "//form[contains(text(), 'First Name *\nLast Name *\nPhone')]",
+    "verified": true
+  },
+  {
+    "id": 3963,
+    "element_name": "first_name___label",
+    "element_type": "label",
+    "css_selector": "label:has-text('First Name *')",
+    "xpath": "//label[contains(text(), 'First Name *')]",
+    "verified": true
+  },
+  {
+    "id": 3964,
+    "element_name": "__span",
+    "element_type": "span",
+    "css_selector": "span:has-text('*')",
+    "xpath": "//span[contains(text(), '*')]",
+    "verified": true
+  },
+  {
+    "id": 3965,
+    "element_name": "enter_your_first_name_input",
+    "element_type": "input",
+    "css_selector": "[placeholder='Enter your first name']",
+    "xpath": "//*[@placeholder='Enter your first name']",
+    "verified": true
+  },
+  {
+    "id": 3966,
+    "element_name": "last_name___label",
+    "element_type": "label",
+    "css_selector": "label:has-text('Last Name *')",
+    "xpath": "//label[contains(text(), 'Last Name *')]",
+    "verified": true
+  },
+  {
+    "id": 3967,
+    "element_name": "phone_number_label",
+    "element_type": "label",
+    "css_selector": "label:has-text('Phone Number')",
+    "xpath": "//label[contains(text(), 'Phone Number')]",
+    "verified": true
+  },
+  {
+    "id": 3968,
+    "element_name": "1__702__123_4567_input",
+    "element_type": "input",
+    "css_selector": "[placeholder='1 (702) 123-4567']",
+    "xpath": "//*[@placeholder='1 (702) 123-4567']",
+    "verified": true
+  },
+  {
+    "id": 3969,
+    "element_name": "div",
+    "element_type": "div",
+    "css_selector": "[role='button']",
+    "xpath": "//*[@role='button']",
+    "verified": true
+  },
+  {
+    "id": 3970,
+    "element_name": "email___label",
+    "element_type": "label",
+    "css_selector": "label:has-text('Email *')",
+    "xpath": "//label[contains(text(), 'Email *')]",
+    "verified": true
+  },
+  {
+    "id": 3971,
+    "element_name": "password___label",
+    "element_type": "label",
+    "css_selector": "label:has-text('Password *')",
+    "xpath": "//label[contains(text(), 'Password *')]",
+    "verified": true
+  },
+  {
+    "id": 3972,
+    "element_name": "__span",
+    "element_type": "span",
+    "css_selector": "span:has-text(' ')",
+    "xpath": "//span[contains(text(), ' ')]",
+    "verified": true
+  },
+  {
+    "id": 3973,
+    "element_name": "span",
+    "element_type": "span",
+    "css_selector": "[aria-label='eye-invisible']",
+    "xpath": "//*[@aria-label='eye-invisible']",
+    "verified": true
+  },
+  {
+    "id": 3974,
+    "element_name": "svg",
+    "element_type": "svg",
+    "css_selector": "svg",
+    "xpath": "//svg",
+    "verified": true
+  },
+  {
+    "id": 3975,
+    "element_name": "path",
+    "element_type": "path",
+    "css_selector": "path",
+    "xpath": "//path",
+    "verified": true
+  },
+  {
+    "id": 3976,
+    "element_name": "re_enter_password___label",
+    "element_type": "label",
+    "css_selector": "label:has-text('Re-Enter Password *')",
+    "xpath": "//label[contains(text(), 'Re-Enter Password *')]",
+    "verified": true
+  },
+  {
+    "id": 3977,
+    "element_name": "sign_up_button",
+    "element_type": "button",
+    "css_selector": "button:has-text('Sign Up')",
+    "xpath": "//button[contains(text(), 'Sign Up')]",
+    "verified": true
+  }
+]

@@ -1,0 +1,522 @@
+[
+  {
+    "id": 4328,
+    "element_name": "path",
+    "element_type": "path",
+    "css_selector": "path",
+    "xpath": "//path",
+    "verified": true
+  },
+  {
+    "id": 4329,
+    "element_name": "tj_div",
+    "element_type": "div",
+    "css_selector": "div:has-text('TJ')",
+    "xpath": "//div[contains(text(), 'TJ')]",
+    "verified": true
+  },
+  {
+    "id": 4322,
+    "element_name": "pod_gallery_upgrade_tj_welcome_to_snappod_ai_enter_div",
+    "element_type": "div",
+    "css_selector": "#root",
+    "xpath": "//*[@id='root']",
+    "verified": true
+  },
+  {
+    "id": 4323,
+    "element_name": "snappod_logo_img",
+    "element_type": "img",
+    "css_selector": "[alt='SnapPod Logo']",
+    "xpath": "//*[@alt='SnapPod Logo']",
+    "verified": true
+  },
+  {
+    "id": 4324,
+    "element_name": "pod_gallery_button",
+    "element_type": "button",
+    "css_selector": "button:has-text('Pod Gallery')",
+    "xpath": "//button[contains(text(), 'Pod Gallery')]",
+    "verified": true
+  },
+  {
+    "id": 4325,
+    "element_name": "upgrade_button",
+    "element_type": "button",
+    "css_selector": "button:has-text('Upgrade')",
+    "xpath": "//button[contains(text(), 'Upgrade')]",
+    "verified": true
+  },
+  {
+    "id": 4326,
+    "element_name": "span",
+    "element_type": "span",
+    "css_selector": "[aria-label='crown']",
+    "xpath": "//*[@aria-label='crown']",
+    "verified": true
+  },
+  {
+    "id": 4327,
+    "element_name": "svg",
+    "element_type": "svg",
+    "css_selector": "svg",
+    "xpath": "//svg",
+    "verified": true
+  },
+  {
+    "id": 4330,
+    "element_name": "welcome_to_snappod_ai_h1",
+    "element_type": "h1",
+    "css_selector": "h1:has-text('Welcome to SnapPod AI')",
+    "xpath": "//h1[contains(text(), 'Welcome to SnapPod AI')]",
+    "verified": true
+  },
+  {
+    "id": 4331,
+    "element_name": "snappod_ai_span",
+    "element_type": "span",
+    "css_selector": "span:has-text('SnapPod AI')",
+    "xpath": "//span[contains(text(), 'SnapPod AI')]",
+    "verified": true
+  },
+  {
+    "id": 4332,
+    "element_name": "enter_your_podcast_episode_topic___brief_descripti_div",
+    "element_type": "div",
+    "css_selector": "div:has-text('Enter your podcast episode top')",
+    "xpath": "//div[contains(text(), 'Enter your podcast episode top')]",
+    "verified": true
+  },
+  {
+    "id": 4333,
+    "element_name": "enter_your_podcast_episode_topic___brief_descripti_div",
+    "element_type": "div",
+    "css_selector": "div:has-text('Enter your podcast episode top')",
+    "xpath": "//div[contains(text(), 'Enter your podcast episode top')]",
+    "verified": true
+  },
+  {
+    "id": 4334,
+    "element_name": "input",
+    "element_type": "input",
+    "css_selector": "#rc_select_0",
+    "xpath": "//*[@id='rc_select_0']",
+    "verified": true
+  },
+  {
+    "id": 4335,
+    "element_name": "enter_your_podcast_episode_topic___brief_descripti_span",
+    "element_type": "span",
+    "css_selector": "span:has-text('Enter your podcast episode top')",
+    "xpath": "//span[contains(text(), 'Enter your podcast episode top')]",
+    "verified": true
+  },
+  {
+    "id": 4336,
+    "element_name": "__current_affairs_off_button",
+    "element_type": "button",
+    "css_selector": "button:has-text('🔍\nCurrent Affairs\nOFF')",
+    "xpath": "//button[contains(text(), '🔍\nCurrent Affairs\nOFF')]",
+    "verified": true
+  },
+  {
+    "id": 4337,
+    "element_name": "__span",
+    "element_type": "span",
+    "css_selector": "span:has-text('🔍')",
+    "xpath": "//span[contains(text(), '🔍')]",
+    "verified": true
+  },
+  {
+    "id": 4338,
+    "element_name": "current_affairs_span",
+    "element_type": "span",
+    "css_selector": "span:has-text('Current Affairs')",
+    "xpath": "//span[contains(text(), 'Current Affairs')]",
+    "verified": true
+  },
+  {
+    "id": 4339,
+    "element_name": "off_span",
+    "element_type": "span",
+    "css_selector": "span:has-text('OFF')",
+    "xpath": "//span[contains(text(), 'OFF')]",
+    "verified": true
+  },
+  {
+    "id": 4340,
+    "element_name": "__span",
+    "element_type": "span",
+    "css_selector": "span:has-text('*')",
+    "xpath": "//span[contains(text(), '*')]",
+    "verified": true
+  },
+  {
+    "id": 4341,
+    "element_name": "required_span",
+    "element_type": "span",
+    "css_selector": "span:has-text('Required')",
+    "xpath": "//span[contains(text(), 'Required')]",
+    "verified": true
+  },
+  {
+    "id": 4342,
+    "element_name": "language__span",
+    "element_type": "span",
+    "css_selector": "span:has-text('Language:')",
+    "xpath": "//span[contains(text(), 'Language:')]",
+    "verified": true
+  },
+  {
+    "id": 4343,
+    "element_name": "english__indian__span",
+    "element_type": "span",
+    "css_selector": "span:has-text('English (Indian)')",
+    "xpath": "//span[contains(text(), 'English (Indian)')]",
+    "verified": true
+  },
+  {
+    "id": 4344,
+    "element_name": "input",
+    "element_type": "input",
+    "css_selector": "#react-select-2-input",
+    "xpath": "//*[@id='react-select-2-input']",
+    "verified": true
+  },
+  {
+    "id": 4345,
+    "element_name": "no_of_speakers__span",
+    "element_type": "span",
+    "css_selector": "span:has-text('No.of Speakers:')",
+    "xpath": "//span[contains(text(), 'No.of Speakers:')]",
+    "verified": true
+  },
+  {
+    "id": 4346,
+    "element_name": "2_span",
+    "element_type": "span",
+    "css_selector": "span:has-text('2')",
+    "xpath": "//span[contains(text(), '2')]",
+    "verified": true
+  },
+  {
+    "id": 4347,
+    "element_name": "input",
+    "element_type": "input",
+    "css_selector": "#react-select-3-input",
+    "xpath": "//*[@id='react-select-3-input']",
+    "verified": true
+  },
+  {
+    "id": 4348,
+    "element_name": "category__span",
+    "element_type": "span",
+    "css_selector": "span:has-text('Category:')",
+    "xpath": "//span[contains(text(), 'Category:')]",
+    "verified": true
+  },
+  {
+    "id": 4349,
+    "element_name": "business_span",
+    "element_type": "span",
+    "css_selector": "span:has-text('Business')",
+    "xpath": "//span[contains(text(), 'Business')]",
+    "verified": true
+  },
+  {
+    "id": 4350,
+    "element_name": "input",
+    "element_type": "input",
+    "css_selector": "#react-select-4-input",
+    "xpath": "//*[@id='react-select-4-input']",
+    "verified": true
+  },
+  {
+    "id": 4351,
+    "element_name": "duration__span",
+    "element_type": "span",
+    "css_selector": "span:has-text('Duration:')",
+    "xpath": "//span[contains(text(), 'Duration:')]",
+    "verified": true
+  },
+  {
+    "id": 4352,
+    "element_name": "2_5___4_minutes_span",
+    "element_type": "span",
+    "css_selector": "span:has-text('2.5 - 4 Minutes')",
+    "xpath": "//span[contains(text(), '2.5 - 4 Minutes')]",
+    "verified": true
+  },
+  {
+    "id": 4353,
+    "element_name": "input",
+    "element_type": "input",
+    "css_selector": "#react-select-5-input",
+    "xpath": "//*[@id='react-select-5-input']",
+    "verified": true
+  },
+  {
+    "id": 4354,
+    "element_name": "tone__span",
+    "element_type": "span",
+    "css_selector": "span:has-text('Tone:')",
+    "xpath": "//span[contains(text(), 'Tone:')]",
+    "verified": true
+  },
+  {
+    "id": 4355,
+    "element_name": "formal_span",
+    "element_type": "span",
+    "css_selector": "span:has-text('Formal')",
+    "xpath": "//span[contains(text(), 'Formal')]",
+    "verified": true
+  },
+  {
+    "id": 4356,
+    "element_name": "input",
+    "element_type": "input",
+    "css_selector": "#react-select-6-input",
+    "xpath": "//*[@id='react-select-6-input']",
+    "verified": true
+  },
+  {
+    "id": 4357,
+    "element_name": "name_of_host_input",
+    "element_type": "input",
+    "css_selector": "[name='host']",
+    "xpath": "//*[@name='host']",
+    "verified": true
+  },
+  {
+    "id": 4358,
+    "element_name": "name_of_guest_input",
+    "element_type": "input",
+    "css_selector": "[name='guest']",
+    "xpath": "//*[@name='guest']",
+    "verified": true
+  },
+  {
+    "id": 4359,
+    "element_name": "ai_knowledge_span",
+    "element_type": "span",
+    "css_selector": "span:has-text('AI Knowledge')",
+    "xpath": "//span[contains(text(), 'AI Knowledge')]",
+    "verified": true
+  },
+  {
+    "id": 4360,
+    "element_name": "button",
+    "element_type": "button",
+    "css_selector": "[role='switch']",
+    "xpath": "//*[@role='switch']",
+    "verified": true
+  },
+  {
+    "id": 4361,
+    "element_name": "div",
+    "element_type": "div",
+    "css_selector": "div",
+    "xpath": "//div",
+    "verified": true
+  },
+  {
+    "id": 4362,
+    "element_name": "my_knowledge_source_span",
+    "element_type": "span",
+    "css_selector": "span:has-text('My Knowledge Source')",
+    "xpath": "//span[contains(text(), 'My Knowledge Source')]",
+    "verified": true
+  },
+  {
+    "id": 4363,
+    "element_name": "select_artifact_button",
+    "element_type": "button",
+    "css_selector": "button:has-text('Select Artifact')",
+    "xpath": "//button[contains(text(), 'Select Artifact')]",
+    "verified": true
+  },
+  {
+    "id": 4364,
+    "element_name": "select_artifact_span",
+    "element_type": "span",
+    "css_selector": "span:has-text('Select Artifact')",
+    "xpath": "//span[contains(text(), 'Select Artifact')]",
+    "verified": true
+  },
+  {
+    "id": 4365,
+    "element_name": "generate_script_button",
+    "element_type": "button",
+    "css_selector": "button:has-text('GENERATE SCRIPT')",
+    "xpath": "//button[contains(text(), 'GENERATE SCRIPT')]",
+    "verified": true
+  },
+  {
+    "id": 4366,
+    "element_name": "your_podcasts_h2",
+    "element_type": "h2",
+    "css_selector": "h2:has-text('Your Podcasts')",
+    "xpath": "//h2[contains(text(), 'Your Podcasts')]",
+    "verified": true
+  },
+  {
+    "id": 4367,
+    "element_name": "all_div",
+    "element_type": "div",
+    "css_selector": "div:has-text('All')",
+    "xpath": "//div[contains(text(), 'All')]",
+    "verified": true
+  },
+  {
+    "id": 4368,
+    "element_name": "all_span",
+    "element_type": "span",
+    "css_selector": "span:has-text('All')",
+    "xpath": "//span[contains(text(), 'All')]",
+    "verified": true
+  },
+  {
+    "id": 4369,
+    "element_name": "podcast_ready_stories_of_the_gig_economy_2025_12_0_article",
+    "element_type": "article",
+    "css_selector": "article:has-text('Podcast Ready\nStories of the G')",
+    "xpath": "//article[contains(text(), 'Podcast Ready\nStories of the G')]",
+    "verified": true
+  },
+  {
+    "id": 4370,
+    "element_name": "podcast_ready_span",
+    "element_type": "span",
+    "css_selector": "span:has-text('Podcast Ready')",
+    "xpath": "//span[contains(text(), 'Podcast Ready')]",
+    "verified": true
+  },
+  {
+    "id": 4371,
+    "element_name": "stories_of_the_gig_economy_h3",
+    "element_type": "h3",
+    "css_selector": "h3:has-text('Stories of the Gig Economy')",
+    "xpath": "//h3[contains(text(), 'Stories of the Gig Economy')]",
+    "verified": true
+  },
+  {
+    "id": 4372,
+    "element_name": "2025_12_08_span",
+    "element_type": "span",
+    "css_selector": "span:has-text('2025-12-08')",
+    "xpath": "//span[contains(text(), '2025-12-08')]",
+    "verified": true
+  },
+  {
+    "id": 4373,
+    "element_name": "__span",
+    "element_type": "span",
+    "css_selector": "span:has-text('•')",
+    "xpath": "//span[contains(text(), '•')]",
+    "verified": true
+  },
+  {
+    "id": 4374,
+    "element_name": "script_ready_making_sense_of_the_future_wit____202_article",
+    "element_type": "article",
+    "css_selector": "article:has-text('Script Ready\nMaking Sense of t')",
+    "xpath": "//article[contains(text(), 'Script Ready\nMaking Sense of t')]",
+    "verified": true
+  },
+  {
+    "id": 4375,
+    "element_name": "script_ready_span",
+    "element_type": "span",
+    "css_selector": "span:has-text('Script Ready')",
+    "xpath": "//span[contains(text(), 'Script Ready')]",
+    "verified": true
+  },
+  {
+    "id": 4376,
+    "element_name": "making_sense_of_the_future_wit____h3",
+    "element_type": "h3",
+    "css_selector": "h3:has-text('Making Sense of the Future wit')",
+    "xpath": "//h3[contains(text(), 'Making Sense of the Future wit')]",
+    "verified": true
+  },
+  {
+    "id": 4377,
+    "element_name": "2025_12_04_span",
+    "element_type": "span",
+    "css_selector": "span:has-text('2025-12-04')",
+    "xpath": "//span[contains(text(), '2025-12-04')]",
+    "verified": true
+  },
+  {
+    "id": 4378,
+    "element_name": "script_failed_the_5_am_club_fallacy__is_slee____20_article",
+    "element_type": "article",
+    "css_selector": "article:has-text('Script Failed\nThe 5 AM Club Fa')",
+    "xpath": "//article[contains(text(), 'Script Failed\nThe 5 AM Club Fa')]",
+    "verified": true
+  },
+  {
+    "id": 4379,
+    "element_name": "script_failed_span",
+    "element_type": "span",
+    "css_selector": "span:has-text('Script Failed')",
+    "xpath": "//span[contains(text(), 'Script Failed')]",
+    "verified": true
+  },
+  {
+    "id": 4380,
+    "element_name": "the_5_am_club_fallacy__is_slee____h3",
+    "element_type": "h3",
+    "css_selector": "h3:has-text('The 5 AM Club Fallacy: Is Slee')",
+    "xpath": "//h3[contains(text(), 'The 5 AM Club Fallacy: Is Slee')]",
+    "verified": true
+  },
+  {
+    "id": 4381,
+    "element_name": "2025_12_03_span",
+    "element_type": "span",
+    "css_selector": "span:has-text('2025-12-03')",
+    "xpath": "//span[contains(text(), '2025-12-03')]",
+    "verified": true
+  },
+  {
+    "id": 4382,
+    "element_name": "script_failed_making_sense_of_the_future_wit____20_article",
+    "element_type": "article",
+    "css_selector": "article:has-text('Script Failed\nMaking Sense of ')",
+    "xpath": "//article[contains(text(), 'Script Failed\nMaking Sense of ')]",
+    "verified": true
+  },
+  {
+    "id": 4383,
+    "element_name": "stories_of_the_gig_economy_div",
+    "element_type": "div",
+    "css_selector": "div:has-text('Stories of the Gig Economy')",
+    "xpath": "//div[contains(text(), 'Stories of the Gig Economy')]",
+    "verified": true
+  },
+  {
+    "id": 4384,
+    "element_name": "making_sense_of_the_future_with_ai_div",
+    "element_type": "div",
+    "css_selector": "div:has-text('Making Sense of the Future wit')",
+    "xpath": "//div[contains(text(), 'Making Sense of the Future wit')]",
+    "verified": true
+  },
+  {
+    "id": 4385,
+    "element_name": "the_placebo_effect__is_it_all_in_your_head__and_is_div",
+    "element_type": "div",
+    "css_selector": "div:has-text('The Placebo Effect: Is It All ')",
+    "xpath": "//div[contains(text(), 'The Placebo Effect: Is It All ')]",
+    "verified": true
+  },
+  {
+    "id": 4386,
+    "element_name": "the_5_am_club_fallacy__is_sleep_more_important_tha_div",
+    "element_type": "div",
+    "css_selector": "div:has-text('The 5 AM Club Fallacy: Is Slee')",
+    "xpath": "//div[contains(text(), 'The 5 AM Club Fallacy: Is Slee')]",
+    "verified": true
+  }
+]
