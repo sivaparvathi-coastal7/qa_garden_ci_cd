@@ -128,8 +128,13 @@ def authenticated_page(context):
     page.goto("https://dev.vox.snappod.ai/login", timeout=60000)
     page.wait_for_load_state("networkidle")
 
+<<<<<<< HEAD
     page.locator("#login-email").fill(os.getenv("VALID_EMAIL", "{valid_email}"))
     page.locator("#login-password").fill(os.getenv("VALID_PASSWORD", "{valid_password}"))
+=======
+    page.locator("#login-email").fill("tadikamallasivaparvathi@gmail.com")
+    page.locator("#login-password").fill("Siva@2001")
+>>>>>>> b12f28c45dbef3e93d77a764ad00ea68415499ab
     page.locator("button:has-text('Login')").click()
 
     page.wait_for_load_state("networkidle")
